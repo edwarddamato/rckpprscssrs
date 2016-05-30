@@ -1,0 +1,67 @@
+﻿.session {
+    background-color: $red;
+    margin: 0 auto;
+    width: 70%;
+    height: 0;
+    overflow: hidden;
+    margin-top: -1px;
+    @include transition(height 0.5s ease-in);
+    position: relative;
+
+    &.st-active {
+        height: 300px;
+    }
+
+    &_scores {
+        &-list {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            @include transform(translateX(-50%));
+            overflow: auto;
+        }
+
+        &-item {
+            background-color: $white;
+            float: left;
+            color: $red;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            width: 75px;
+            text-align: center;
+            border-left: 1px solid $light-blue;
+            border-right: 1px solid $light-blue;
+
+            &:last-child {
+            }
+        }
+    }
+
+    &_players {
+        &-list {
+            overflow: auto;
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        &-item {
+            float: left;
+            text-align: right;
+            width: 50%;
+            padding: 10px;
+            color: $blue;
+            border-bottom: 1px solid $light-blue;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: bold;
+            padding-right: 85px;
+
+            &:nth-child(2) {
+                text-align: left;
+                padding-right: 10px;
+                padding-left: 85px;
+            }
+        }
+    }
+}

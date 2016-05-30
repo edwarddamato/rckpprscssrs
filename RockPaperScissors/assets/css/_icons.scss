@@ -1,0 +1,12 @@
+﻿.icon {
+    stroke: $red;
+    fill: $red;
+
+    &_play {
+        width: 42px;
+        height: 42px; 
+        background-color: $white;
+        border-radius: 0 50%;
+        padding: 10px;
+    }
+}

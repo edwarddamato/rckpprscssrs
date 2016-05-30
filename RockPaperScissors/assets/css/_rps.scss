@@ -1,0 +1,107 @@
+﻿body {
+    background-color: $blue;
+    color: $yellow;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+@include keyframes(anim-header) {
+    0% {
+        @include transform(translateY(150px));
+        @include opacity(0);
+    }
+    100% {
+        @include transform(translateY(0));
+        @include opacity(1.0);
+    }
+}
+
+@include keyframes(anim-nav) {
+    from {
+        @include opacity(0);
+    }
+    to {
+        @include opacity(1.0);
+    }
+}
+
+.header {
+    margin: 20px;
+    position: relative;
+    @include animation(anim-header 1s 1 ease-out);
+
+    &_title {
+        padding: 0;
+        margin: 0;
+        font-size: 42px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: -2px;
+        text-transform: lowercase;
+        color: $red;
+    }
+
+    &_icons {
+        text-align: center;
+        margin-top: 10px;
+
+        .icon {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+}
+
+.nav {
+    width: 70%;
+    margin: 0 auto;
+    @include opacity(0);
+    @include animation(anim-nav 1s 1 ease-out forwards);
+    @include animation-delay(1s);
+
+    &_item {
+        width: 50%;
+        float: left;
+        font-weight: bold;
+        text-align: center;
+        background-color: $yellow;
+        color: $blue;
+        padding: 10px 20px;
+        position: relative;
+        border-bottom: 5px solid $red;
+        @include transition(all 0.15s linear);
+        cursor: pointer;
+        @include opacity(0.7);
+
+        &.st-active,
+        &:hover {
+            @include opacity(1);
+        }
+
+        &.st-active {
+            &:after {
+                display: none;
+            }
+        }
+
+        &:nth-child(even) {
+            background-color: $white;
+        }
+
+        &-list {
+            overflow: auto;
+        }
+
+        &:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-bottom: 3px solid $red;
+            border-right: 3px solid $red;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            @include transform(translateY(-50%) rotate(-45deg));
+        }
+    }
+}
