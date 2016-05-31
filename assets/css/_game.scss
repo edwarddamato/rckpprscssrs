@@ -5,26 +5,6 @@
     font-size: 12px;
 }
 
-@include keyframes(anim-header) {
-    0% {
-        @include transform(translateY(150px));
-        @include opacity(0);
-    }
-    100% {
-        @include transform(translateY(0));
-        @include opacity(1.0);
-    }
-}
-
-@include keyframes(anim-nav) {
-    from {
-        @include opacity(0);
-    }
-    to {
-        @include opacity(1.0);
-    }
-}
-
 .header {
     margin: 20px;
     position: relative;
@@ -53,12 +33,16 @@
 }
 
 .nav {
-    width: 70%;
+    width: 100%;
     max-width: 450px;
     margin: 0 auto;
     @include opacity(0);
     @include animation(anim-nav 1s 1 ease-out forwards);
     @include animation-delay(1s);
+    
+    @media (min-width: 768px) {
+        width: 70%;
+    }
 
     &_item {
         width: 50%;
@@ -67,12 +51,16 @@
         text-align: center;
         background-color: $yellow;
         color: $blue;
-        padding: 10px 20px;
+        padding: 10px 35px;
         position: relative;
         border-bottom: 5px solid $red;
         @include transition(all 0.15s linear);
         cursor: pointer;
         @include opacity(0.7);
+
+        @media (min-width: 768px) {
+            padding: 10px 20px;
+        }
 
         &.st-active,
         &:hover {

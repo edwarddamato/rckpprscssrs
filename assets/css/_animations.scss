@@ -1,0 +1,42 @@
+﻿@include keyframes(anim-header) {
+    0% {
+        @include transform(translateY(150px));
+        @include opacity(0);
+    }
+    100% {
+        @include transform(translateY(0));
+        @include opacity(1.0);
+    }
+}
+
+@include keyframes(anim-nav) {
+    from {
+        @include opacity(0);
+    }
+    to {
+        @include opacity(1.0);
+    }
+}
+
+@include keyframes(anim-loader-in) {
+    0% {
+        @include transform(scale(1));
+    }
+    50% {
+        @include transform(scale(0));
+    }
+    100% {
+        @include transform(scale(1));
+    }
+}
+@include keyframes(anim-loader-out) {
+    0% {
+        @include transform(scale(0));
+    }
+    50% {
+        @include transform(scale(1));
+    }
+    100% {
+        @include transform(scale(0));
+    }
+}

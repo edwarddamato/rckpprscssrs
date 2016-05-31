@@ -4,10 +4,9 @@
 
     var _private = {
         start: function () {
-            _private.set();
-            _private.bindEvents();
+            _private.setUI();
         },
-        set: function () {
+        setUI: function () {
             movesList = Moves.getMovesList();
             var $headerMovesList = document.querySelector(".js_header-moves");
             for (var countMoves = 0; countMoves < movesList.length; countMoves++) {
@@ -15,8 +14,7 @@
             }
 
             Game.subscribe(_ui.refresh);
-        },
-        bindEvents: function () {
+
             // bind game start options
             $gameStartOptions = document.querySelectorAll(".js_nav-game-start");
 
@@ -177,10 +175,6 @@
 
             }
         },
-        finishGame: function () {
-            $gameStartOptions.removeClass("st-active");
-            Game.finish();
-        },
         refresh: function () {
             var $session = document.querySelector(".js_session");
             var currentGame = Game.current;
@@ -198,6 +192,10 @@
             else {
                 $session.removeClass("st-active");
             };
+        },
+        finishGame: function () {
+            $gameStartOptions.removeClass("st-active");
+            Game.finish();
         }
     };
 

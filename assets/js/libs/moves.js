@@ -25,12 +25,22 @@ var Moves = (function () {
 
     // private list of methods
     var _private = {
-        // returns the winner between two given moves (ex: winner from paper, rock returns paper)
+
+        /**
+            Returns the winner between two given moves (ex: winner from paper, rock returns paper)
+            @param {string} move1: String representing move1 to compare with move2.
+            @param {string} move2: String representing move2 to compare with move1.
+            @return {string}: String representing the winner move between move1 and move2.
+        */
         getWinner: function (move1, move2) {
             // uses JSON object above to check whether move1 beats move2
             return logic[move1].beats.indexOf(move2) > -1 ? move1 : move2;
         },
-        // returns an array of moves from the MOVES enum
+
+        /**
+            Returns an array of moves generated from the MOVES enum.
+            @return {array}: The array containing the available moves.
+        */
         getMovesList: function () {
             var arrMoves = [];
             var moves = MOVES;
@@ -42,6 +52,11 @@ var Moves = (function () {
             return arrMoves;
         },
         // generates a random move from the array of moves
+
+        /**
+            Returns a random move based on the array of moves available, as generated from the getMovesList method
+            @return {string}: The random move generated.
+        */
         getRandomMove: function () {
             var movesList = _private.getMovesList();
             // generates a random number from a specific range (range being the length of the moves list)
