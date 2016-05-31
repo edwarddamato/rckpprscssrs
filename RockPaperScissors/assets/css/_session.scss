@@ -1,15 +1,43 @@
-﻿.session {
+﻿@include keyframes(anim-loader-in) {
+    0% {
+        @include transform(scale(1));
+    }
+    50% {
+        @include transform(scale(0));
+    }
+    100% {
+        @include transform(scale(1));
+    }
+}
+@include keyframes(anim-loader-out) {
+    0% {
+        @include transform(scale(0));
+    }
+    50% {
+        @include transform(scale(1));
+    }
+    100% {
+        @include transform(scale(0));
+    }
+}
+
+.session {
     background-color: $red;
     margin: 0 auto;
-    width: 70%;
-    height: 0;
+    width: 100%;
+    height: auto;
     overflow: hidden;
     margin-top: -1px;
-    @include transition(height 0.5s ease-in);
+    @include transition(all 0.15s ease-in);
     position: relative;
+    @include opacity(0);
 
     &.st-active {
-        height: 300px;
+        @include opacity(1);
+    }
+
+    &.st-gameover {
+        background-color: $light-blue;
     }
 
     &_scores {
@@ -27,13 +55,17 @@
             color: $red;
             font-size: 18px;
             font-weight: bold;
-            padding: 10px;
-            width: 75px;
+            padding: 12px;
             text-align: center;
             border-left: 1px solid $light-blue;
             border-right: 1px solid $light-blue;
+            border-bottom: 2px solid $light-blue;
 
+            &:first-child {
+                border-left: none;
+            }
             &:last-child {
+                border-right: none;
             }
         }
     }
@@ -56,11 +88,238 @@
             font-size: 14px;
             font-weight: bold;
             padding-right: 85px;
+            position: relative;
 
             &:nth-child(2) {
                 text-align: left;
                 padding-right: 10px;
                 padding-left: 85px;
+
+                .session_players-turn {
+                    text-align: left;
+
+                    &:before,
+                    &:after {
+                        right: 0;
+                        left: auto;
+                    }
+                }
+            }
+        }
+        
+        &-turn {
+            color: $white;
+            text-align: right;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: normal;
+            display: block;
+            visibility: hidden;
+
+            .st-hasturn & {
+                visibility: visible;
+            }
+
+            .st-gameover & {
+                display: none;
+            }
+
+            &:after,
+            &:before {
+                content: '';
+                background-color: $white;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 32px;
+                height: 32px;
+                margin-top: -16px;
+                border-radius: 50%;
+                @include opacity(0.5);
+                
+                .st-gameover & {
+                    display: none;
+                }
+            }
+
+            &:before {
+                @include animation(anim-loader-in 1.5s infinite ease-out);
+            }
+            &:after {
+                @include animation(anim-loader-out 1.5s infinite ease-out);
+            }
+        }
+    }
+
+    &_board {
+        width: 70%;
+        margin: 0 auto;
+        padding: 20px;
+
+        .st-gameover & {
+            display: none;
+        }
+
+        &-list {
+            overflow: auto;
+        }
+        &-item {
+            float: left;
+            width: 50%;
+            position: relative;
+            border-right: 2px dotted $white;
+
+            &:nth-child(even) {
+                border-left: 2px dotted $white;
+                border-right: none;
+            }
+        }
+    }
+
+    &_moves {
+        &-list {
+            margin-right: 15px;
+            float: right;
+            width: 160px;
+            
+            .session_board-item:nth-child(even) & {
+                float: left;
+                margin-right: 0;
+                margin-left: 15px;
+            }
+        }
+        &-item {
+            overflow: auto;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            display: block;
+            float: right;
+            
+            .session_board-item:nth-child(even) & {
+                float: left;
+            }
+
+            .session_board-item--c & {
+                cursor: default;
+            }
+
+            .icon_play {
+                fill: $blue;
+                stroke: $blue;
+                float: left;
+                border-radius: 0 0 0 50%;
+                @include transition(all 0.15s linear);
+
+                .session_board-item:nth-child(even) & {
+                    float: right;
+                    border-radius: 0 0 50% 0;
+                }
+
+                .session_board-item--c & {
+                    background-color: $yellow;
+                }
+            }
+
+            &:hover {
+                .icon_play {
+                    fill: $white;
+                    stroke: $white;
+                    background-color: $blue;
+                }
+
+                .session_moves-title {
+                    color: $white;
+                    background-color: $blue;
+                }
+            }
+
+            
+            &.st-selected {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $red;
+                    @include opacity(0.5);
+                }
+                .icon_play {
+                    fill: $white;
+                    stroke: $white;
+                    background-color: $blue;
+                }
+
+                .session_moves-title {
+                    color: $white;
+                    background-color: $blue;
+                }
+            }
+        }
+        &-title {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 11px;
+            float: left;
+            color: $blue;
+            background-color: $white;
+            border-radius: 0 50% 0 0;
+            padding: 17px 14px 13px 10px;
+            margin-left: 1px;
+            @include transition(background-color 0.15s linear);
+
+            .session_board-item:nth-child(even) & {
+                margin-left: 0;
+                margin-right: 1px;
+                border-radius: 50% 0 0 0;
+                padding: 17px 10px 13px 14px;
+            }
+
+            .session_board-item--c & {
+                background-color: $yellow;
+            }
+        }
+    }
+
+    &_result {
+        display: none;
+        padding: 20px;
+
+        .st-gameover & {
+            display: block;
+        }
+
+        &-winner {
+            margin-top: 10px;
+            font-size: 32px;
+            font-style: italic;
+            font-weight: bold;
+            color: $white;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+    }
+
+    &_options {
+        text-align: center;
+        padding: 20px;
+
+        &-button {
+            border: 0;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 12px 40px;
+            color: $white;
+            background-color: $red;
+            margin-left: 5px;
+            margin-right: 5px;
+            @include transition(background-color 0.15s linear);
+            cursor: pointer;
+
+            &:hover {
+                background-color: $blue;
             }
         }
     }

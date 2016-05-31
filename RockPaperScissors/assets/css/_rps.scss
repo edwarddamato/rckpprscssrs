@@ -54,6 +54,7 @@
 
 .nav {
     width: 70%;
+    max-width: 450px;
     margin: 0 auto;
     @include opacity(0);
     @include animation(anim-nav 1s 1 ease-out forwards);
@@ -86,6 +87,23 @@
 
         &:nth-child(even) {
             background-color: $white;
+        }
+
+        &-stop {
+            display: none;
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            font-size: 9px;
+            text-transform: uppercase;
+            background-color: $red;
+            color: $white;
+            padding: 4px;
+            @include transform(translateY(-50%));
+
+            .st-active & {
+                display: block;
+            }
         }
 
         &-list {
