@@ -330,8 +330,8 @@
             font-size: 13px;
             font-weight: bold;
             padding: 12px 40px;
-            color: $white;
-            background-color: $red;
+            color: $blue;
+            background-color: $yellow;
             margin-left: 5px;
             margin-right: 5px;
             @include transition(background-color 0.15s linear);
@@ -339,6 +339,7 @@
 
             &:hover {
                 background-color: $blue;
+                color: $yellow;
             }
         }
     }
