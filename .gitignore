@@ -1,3 +1,7 @@
 node_modules
 *.suo
 *.user
+*.xproj
+appsettings.json
+Properties
+*.sln

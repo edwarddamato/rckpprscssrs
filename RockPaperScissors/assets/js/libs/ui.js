@@ -1,5 +1,6 @@
 ﻿var UI = (function () {
     var $gameStartOptions = [];
+    var movesList = [];
 
     var _private = {
         start: function () {
@@ -7,7 +8,7 @@
             _private.bindEvents();
         },
         set: function () {
-            var movesList = Tools.getMovesList();
+            movesList = Moves.getMovesList();
             var $headerMovesList = document.querySelector(".js_header-moves");
             for (var countMoves = 0; countMoves < movesList.length; countMoves++) {
                 $headerMovesList.appendChild(_ui.getMoveIcon(movesList[countMoves]));
@@ -76,7 +77,6 @@
             var $playerMovesList = document.createElement("ul");
             $playerMovesList.addClass("session_moves-list");
 
-            var movesList = Tools.getMovesList();
             var move = {};
             for (var countMoves = 0; countMoves < movesList.length; countMoves++) {
                 (function () {
@@ -109,7 +109,7 @@
             return $playerBoard;
         },
         generateSession: function () {
-            var currentGame = Game.getCurrent;
+            var currentGame = Game.current;
             var players = currentGame.players;
             var $playersList = document.querySelector(".js_game-players");
             $playersList.empty();
@@ -124,7 +124,7 @@
                 var player = players[countPlayers];
                 var $player = document.createElement("li");
                 $player.addClass("session_players-item");
-                $player.innerText = player.type === Game.PLAYERS.HUMAN ? ("Human " + (countPlayers+1)) : ("Computer " + (countPlayers+1));
+                $player.innerText = player.name;
                 $playersList.appendChild($player);
 
                 var $turnElement = document.createElement("span");
@@ -145,6 +145,35 @@
             }
 
             if (currentGame.gameOver) {
+                var $gameWinner = document.querySelector(".js_session-winner");
+                var $gameMoves = document.querySelector(".js_session-moves");
+                var $gameDesc = document.querySelector(".js_session_description");
+
+                $gameMoves.empty();
+
+                if (currentGame.winner === -1) {
+                    $gameWinner.innerText = "That was a draw!";
+                    $gameDesc.innerText = "Both players played " + currentGame.players[0].move;
+                }
+                else {
+                    $gameWinner.innerText = currentGame.winner.name + " wins";
+
+                    $gameDesc.innerText = currentGame.winner.move + " beats";
+
+                    for (var countPlayers = 0; countPlayers < currentGame.players.length; countPlayers++) {
+                        var player = currentGame.players[countPlayers];
+
+                        var $playerMove = _ui.getMoveIcon(player.move);
+                        if (player.move === currentGame.winner.move) {
+                            $playerMove.addClass("st-winner");
+                        }
+                        else {
+                            $gameDesc.innerText += " " + player.move;
+                        }
+                        $gameMoves.appendChild($playerMove);
+                    }
+                }
+
 
             }
         },
@@ -154,7 +183,7 @@
         },
         refresh: function () {
             var $session = document.querySelector(".js_session");
-            var currentGame = Game.getCurrent;
+            var currentGame = Game.current;
 
             if (currentGame.players.length > 0) {
                 $session.addClass("st-active");

@@ -1,88 +1,86 @@
-﻿var Game = (function () {
-    var currentGame = {
-        turn: 0,
-        gameOver: false,
-        players: []
-    };
+﻿/*
+    Game engine - contains methods and functionality used by the UI
+    to play the game.
+*/
+var Game = (function () {
+    // stores current game object
+    var currentGame = {};
 
+    // stores game timeout object
     var gameTimeout = {};
-
-    var MOVES = {
-        ROCK: "ROCK",
-        PAPER: "PAPER",
-        SCISSORS: "SCISSORS"
-    };
     
+    // PLAYERS enum - type of players allowed to play this game
     var PLAYERS = {
         HUMAN: 0,
         COMPUTER: 1
     };
 
-    var movesLogic = {
-        ROCK: {
-            beats: [MOVES.SCISSORS]
-        },
-        PAPER: {
-            beats: [MOVES.ROCK]
-        },
-        SCISSORS: {
-            beats: [MOVES.PAPER]
-        }
-    };
-
-    var _moves = {
-        getWinner: function (move1, move2) {
-            return movesLogic[move1].beats.indexOf(move2) > -1 ? move1 : move2;
-        }
-    };
-
-    var _game = {
+    // private list of methods and objects
+    var _private = {
+        /* an array of callbacks that can attach themselves to the game object;
+        these callbacks are called whenever the game decides - these are used by the UI so that the UI
+        is updated when the game is updated.
+        */
         subscribers: [],
+        // method to attach a callback
+        subscribe: function (subscriber) {
+            _private.subscribers.push(subscriber);
+        },
+        // goes through the attached callbacks and calls them
+        updateSubscribers: function () {
+            for (var countSubs = 0; countSubs < _private.subscribers.length; countSubs++) {
+                _private.subscribers[countSubs]();
+            }
+        },
+        // start of a new game - resets the current game object to its default
         start: function (p1, p2) {
-            currentGame.gameOver = false;
-            currentGame.turn = 0;
-            currentGame.players = [{
+            currentGame.winner = -1; // no winner specified
+            currentGame.gameOver = false; // game is not over
+            currentGame.turn = 0; // turn for first player
+            currentGame.players = [{ // array of 2 players
                 type: p1,
                 score: 0,
-                move: -1
+                move: -1,
+                name: ""
             },
             {
                 type: p2,
                 score: 0,
-                move: -1
+                move: -1,
+                name: ""
             }];
+            currentGame.players[0].name = currentGame.players[0].type === PLAYERS.COMPUTER ? "COMPUTER 1" : "HUMAN 1";
+            currentGame.players[1].name = currentGame.players[1].type === PLAYERS.COMPUTER ? "COMPUTER 2" : "HUMAN 2";
 
-            _game.updateSubscribers();
-            _game.waitForTurn();
+            _private.updateSubscribers();
+            _private.waitForTurn();
         },
         finish: function () {
             currentGame.players = [];
-            _game.updateSubscribers();
+            _private.updateSubscribers();
         },
         continue: function () {
             currentGame.gameOver = false;
             currentGame.turn = 0;
+            currentGame.winner = -1;
             currentGame.players[0].move = -1;
             currentGame.players[1].move = -1;
 
-            _game.updateSubscribers();
-            _game.waitForTurn();
+            _private.updateSubscribers();
+            _private.waitForTurn();
         },
         play: function (player, move) {
             player.move = move;
 
-            _game.waitForTurn();
-            _game.updateSubscribers();
+            _private.waitForTurn();
+            _private.updateSubscribers();
         },
         generateMove: function (againstPlayer, callback) {
             // I'm a computer, let me put a little delay
             clearTimeout(gameTimeout);
             gameTimeout = window.setTimeout(function () {
-                var movesList = Tools.getMovesList();
-                var moveToDo = movesList[(Math.floor(Math.random() * (movesList.length - 1 + 1) + 1)) - 1];
-
-                callback(moveToDo);
-            }, 1000);
+                callback(Moves.getRandomMove());
+            }, 2000);
         },
         waitForTurn: function () {
             currentGame.gameOver = false;
@@ -97,8 +95,8 @@
                     return;
                 }
                 else if (player1.type === PLAYERS.COMPUTER) {
-                    _game.generateMove(player2, function (move) {
-                        _game.play(player1, move);
+                    _private.generateMove(player2, function (move) {
+                        _private.play(player1, move);
                     });
                     return;
                 }
@@ -112,8 +110,8 @@
                     return;
                 }
                 else if (player2.type === PLAYERS.COMPUTER) {
-                    _game.generateMove(player1, function (move) {
-                        _game.play(player2, move);
+                    _private.generateMove(player1, function (move) {
+                        _private.play(player2, move);
                     });
                     return;
                 }
@@ -123,44 +121,35 @@
             if (player1.move !== -1 && player2.move !== -2) {
                 // if move is the same, draw
                 if (player1.move === player2.move) {
-
+                    currentGame.winner = -1;
                 }
                 else {
-                    var winnerMove = _moves.getWinner(player1.move, player2.move);
+                    var winnerMove = Moves.getWinner(player1.move, player2.move);
                     if (player1.move === winnerMove) {
                         player1.score++;
+                        currentGame.winner = player1;
                     }
 
                     else {
                         player2.score++;
+                        currentGame.winner = player2;
                     }
                 }
 
                 currentGame.gameOver = true;
-                _game.updateSubscribers();
-            }
-        },
-        subscribe: function (subscriber) {
-            _game.subscribers.push(subscriber);
-        },
-        updateSubscribers: function () {
-            for (var countSubs = 0; countSubs < _game.subscribers.length; countSubs++) {
-                _game.subscribers[countSubs]();
+                _private.updateSubscribers();
             }
         }
     };
 
     return {
-        start: _game.start,
-        finish: _game.finish,
-        play: _game.play,
-        continue: _game.continue,
-        waitForTurn: _game.waitForTurn,
-        getCurrent: currentGame,
-        subscribe: _game.subscribe,
-        getWinner: _moves.getWinner,
-        generateMove: _game.generateMove,
         PLAYERS: PLAYERS,
-        MOVES: MOVES
+        current: currentGame,
+        start: _private.start,
+        finish: _private.finish,
+        play: _private.play,
+        continue: _private.continue,
+        waitForTurn: _private.waitForTurn,
+        subscribe: _private.subscribe
     };
 })();

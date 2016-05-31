@@ -300,6 +300,25 @@
             text-align: center;
             letter-spacing: -1px;
         }
+        &-description {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: $white;
+            text-align: center;
+        }
+        &-moves {
+            text-align: center;
+            .icon_play {
+                margin: 5px;
+
+                &.st-winner {
+                    background-color: $red;
+                    stroke: $white;
+                    fill: $white;
+                    @include transform(scale(1.3));
+                }
+            }
+        }
     }
 
     &_options {
