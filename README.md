@@ -1,12 +1,8 @@
-# Rock-Paper-Scissors (Lizard-Spock) [![Build Status](https://travis-ci.org/edwarddamato/rckpprscssrs.svg?branch=master)](https://travis-ci.org/edwarddamato/rckpprscssrs)
+# Rock-Paper-Scissors (Lizard-Spock)
 
-[<img src="https://rawgit.com/sass/node-sass/master/media/logo.svg" width="200" align="right">](https://github.com/sass/node-sass)
+> Rock-Paper-Scissors-Lizard-Spock fun!
 
-> Compile Sass to CSS using [node-sass](https://github.com/sass/node-sass)
-
-*The issue tracker is disabled because of continuous abuse. Use [Stack Overflow](https://stackoverflow.com/questions/tagged/node-sass) for support questions. Issues with the output should be reported on the libsass [issue tracker](https://github.com/hcatlin/libsass/issues). Install issues should be reported on the node-sass [issue tracker](https://github.com/sass/node-sass/issues). Learn how [semver works](https://nodesource.com/blog/semver-tilde-and-caret) before opening a PR updating node-sass.*
-
-This task uses [libsass](http://libsass.org), which is a Sass compiler in C++. It's a lot faster than the original Ruby compiler and [fully compatible](http://sass-compatibility.github.io/).
+This game is built using HTML, CSS and vanilla JavaScript.
 
 
 ## Install
@@ -18,26 +14,19 @@ $ npm install --save-dev grunt-sass
 
 ## Usage
 
+To modify the moves, open `moves.js` in `assets/js/libs` and modify the `MOVES` ENUM.
+
 ```js
-require('load-grunt-tasks')(grunt); // npm install --save-dev load-grunt-tasks
-
-grunt.initConfig({
-	sass: {
-		options: {
-			sourceMap: true
-		},
-		dist: {
-			files: {
-				'main.css': 'main.scss'
-			}
-		}
-	}
-});
-
-grunt.registerTask('default', ['sass']);
+// MOVES enum - defines moves available in game
+var MOVES = {
+    ROCK: "ROCK",
+    PAPER: "PAPER",
+    SCISSORS: "SCISSORS",
+    LIZARD: "LIZARD",
+    SPOCK: "SPOCK"
+};
 ```
-
-Files starting with `_` are ignored to match the expected [Sass partial behaviour](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#partials).
+Just download the source and open `index.html`. Alternatively, go to the [GitHub Page](http://edwarddamato.github.io/rckpprscssrs/index.html).
 
 
 ## Options
@@ -49,4 +38,4 @@ The default value for the `precision` option is `10`, so you don't have to chang
 
 ## License
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+© [Edward D'Amato](http://www.edwarddamato.com)
