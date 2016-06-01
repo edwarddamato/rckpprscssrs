@@ -7,9 +7,9 @@ var Moves = (function () {
     var MOVES = {
         ROCK: "ROCK",
         PAPER: "PAPER",
-        SCISSORS: "SCISSORS"
-        //LIZARD: "LIZARD",
-        //SPOCK: "SPOCK"
+        SCISSORS: "SCISSORS",
+        LIZARD: "LIZARD",
+        SPOCK: "SPOCK"
     };
 
     // JSON object which defines which moves beat which moves
