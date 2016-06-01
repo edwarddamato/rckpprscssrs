@@ -6,6 +6,12 @@ This game is built using HTML, CSS and vanilla JavaScript.
 
 
 ## Install
+
+If downloaded locally, install packages using `npm`.
+```
+$ npm install
+```
+
 When .SCSS or .JS files are modified, rebuild using Grunt.
 
 Go to `RockPaperScissors/node_modules/.bin`.
