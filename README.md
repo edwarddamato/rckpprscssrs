@@ -46,7 +46,7 @@ var MOVES = {
 ```
 ## Browsers/Devices
 
-Tested on:
+Tested on and compatible with:
 * Google Chrome
 * Mozilla FireFox
 * Internet Explorer 9, 10, 11, EDGE
