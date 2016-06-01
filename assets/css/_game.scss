@@ -1,14 +1,16 @@
 ﻿body {
-    background-color: $blue;
-    color: $yellow;
+    background-color: $bg;
+    color: $primary-colour;
     font-family: sans-serif;
     font-size: 12px;
+    padding-bottom: 32px;
 }
 
 .header {
-    margin: 20px;
+    padding: 20px;
     position: relative;
     @include animation(anim-header 1s 1 ease-out);
+    border-bottom: 1px solid $border-colour;
 
     &_title {
         padding: 0;
@@ -18,7 +20,7 @@
         text-align: center;
         letter-spacing: -2px;
         text-transform: lowercase;
-        color: $red;
+        color: $primary-colour;
     }
 
     &_icons {
@@ -33,30 +35,25 @@
 }
 
 .nav {
+    background-color: $white;
     width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
+    border-bottom: 1px solid $border-colour;
     @include opacity(0);
     @include animation(anim-nav 1s 1 ease-out forwards);
     @include animation-delay(1s);
-    
-    @media (min-width: 768px) {
-        width: 70%;
-    }
 
     &_item {
         width: 50%;
         float: left;
         font-weight: bold;
         text-align: center;
-        background-color: $yellow;
-        color: $blue;
-        padding: 10px 35px;
+        color: $primary-colour;
+        padding: 10px 30px;
         position: relative;
-        border-bottom: 5px solid $red;
+        border-bottom: 5px solid $primary-colour;
         @include transition(all 0.15s linear);
         cursor: pointer;
-        @include opacity(0.7);
+        @include opacity(0.5);
 
         @media (min-width: 768px) {
             padding: 10px 20px;
@@ -84,7 +81,7 @@
             right: 5px;
             font-size: 9px;
             text-transform: uppercase;
-            background-color: $red;
+            background-color: $alt-colour;
             color: $white;
             padding: 4px;
             @include transform(translateY(-50%));
@@ -96,18 +93,35 @@
 
         &-list {
             overflow: auto;
+            max-width: 450px;
+            margin: 0 auto;
+            @media (min-width: 768px) {
+                width: 70%;
+            }
+
         }
 
         &:after {
             content: '';
             width: 8px;
             height: 8px;
-            border-bottom: 3px solid $red;
-            border-right: 3px solid $red;
+            border-bottom: 3px solid $primary-colour;
+            border-right: 3px solid $primary-colour;
             position: absolute;
             top: 50%;
             right: 10px;
             @include transform(translateY(-50%) rotate(-45deg));
         }
     }
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    font-size: 10px;
+    border-top: 1px solid $border-colour;
 }

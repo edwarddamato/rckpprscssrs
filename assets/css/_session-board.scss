@@ -11,14 +11,14 @@
         &-item {
             background-color: $white;
             float: left;
-            color: $red;
+            color: $alt-colour;
             font-size: 18px;
             font-weight: bold;
             padding: 12px;
             text-align: center;
-            border-left: 1px solid $light-blue;
-            border-right: 1px solid $light-blue;
-            border-bottom: 2px solid $light-blue;
+            border-left: 1px solid $border-colour-dark;
+            border-right: 1px solid $border-colour-dark;
+            border-bottom: 2px solid $border-colour-dark;
 
             &:first-child {
                 border-left: none;
@@ -49,10 +49,10 @@
             float: left;
             width: 50%;
             position: relative;
-            border-right: 2px dotted $white;
+            border-right: 2px dotted $border-colour;
 
             &:nth-child(even) {
-                border-left: 2px dotted $white;
+                border-left: 2px dotted $border-colour;
                 border-right: none;
             }
         }
@@ -63,7 +63,7 @@
         &-list {
             margin-right: 15px;
             float: right;
-            width: 140px;
+            width: 135px;
             
             .session_board-item:nth-child(even) & {
                 float: left;
@@ -88,8 +88,6 @@
             }
 
             .icon_play {
-                fill: $blue;
-                stroke: $blue;
                 float: left;
                 border-radius: 0 0 0 50%;
                 @include transition(all 0.15s linear);
@@ -100,7 +98,7 @@
                 }
 
                 .session_board-item--c & {
-                    background-color: $yellow;
+                    background-color: $black;
                 }
             }
 
@@ -108,12 +106,12 @@
                 .icon_play {
                     fill: $white;
                     stroke: $white;
-                    background-color: $blue;
+                    background-color: $alt-colour;
                 }
 
                 .session_moves-title {
                     color: $white;
-                    background-color: $blue;
+                    background-color: $alt-colour;
                 }
             }
 
@@ -126,18 +124,18 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: $red;
+                    background-color: $primary-colour;
                     @include opacity(0.5);
                 }
                 .icon_play {
                     fill: $white;
                     stroke: $white;
-                    background-color: $blue;
+                    background-color: $alt-colour;
                 }
 
                 .session_moves-title {
                     color: $white;
-                    background-color: $blue;
+                    background-color: $alt-colour;
                 }
             }
         }
@@ -146,7 +144,7 @@
             font-weight: bold;
             font-size: 11px;
             float: left;
-            color: $blue;
+            color: $alt-colour;
             background-color: $white;
             border-radius: 0 50% 0 0;
             padding: 17px 14px 13px 10px;
@@ -161,7 +159,7 @@
             }
 
             .session_board-item--c & {
-                background-color: $yellow;
+                background-color: #000;
             }
         }
     }

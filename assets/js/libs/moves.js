@@ -8,18 +8,26 @@ var Moves = (function () {
         ROCK: "ROCK",
         PAPER: "PAPER",
         SCISSORS: "SCISSORS"
+        //LIZARD: "LIZARD",
+        //SPOCK: "SPOCK"
     };
 
     // JSON object which defines which moves beat which moves
     var logic = {
         ROCK: { // rock beats scissors
-            beats: [MOVES.SCISSORS]
+            beats: [MOVES.SCISSORS, MOVES.LIZARD]
         },
         PAPER: { // paper beats rock
-            beats: [MOVES.ROCK]
+            beats: [MOVES.ROCK, MOVES.SPOCK]
         },
         SCISSORS: { // scissors beats paper
-            beats: [MOVES.PAPER]
+            beats: [MOVES.PAPER, MOVES.LIZARD]
+        },
+        LIZARD: {
+            beats: [MOVES.SPOCK, MOVES.PAPER]
+        },
+        SPOCK: {
+            beats: [MOVES.ROCK, MOVES.SCISSORS]
         }
     };
 

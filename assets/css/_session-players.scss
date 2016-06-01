@@ -14,8 +14,8 @@
             text-align: right;
             width: 50%;
             padding: 10px;
-            color: $blue;
-            border-bottom: 1px solid $light-blue;
+            color: $white;
+            border-bottom: 1px solid $border-colour-dark;
             text-transform: uppercase;
             font-size: 14px;
             font-weight: bold;
@@ -32,7 +32,7 @@
 
                     &:before,
                     &:after {
-                        right: 0;
+                        right: 10px;
                         left: auto;
                     }
                 }
@@ -40,7 +40,7 @@
         }
         
         &-turn {
-            color: $white;
+            color: $alt-colour;
             text-align: right;
             font-size: 10px;
             text-transform: uppercase;
@@ -62,7 +62,7 @@
                 background-color: $white;
                 position: absolute;
                 top: 50%;
-                left: 0;
+                left: 10px;
                 width: 32px;
                 height: 32px;
                 margin-top: -16px;

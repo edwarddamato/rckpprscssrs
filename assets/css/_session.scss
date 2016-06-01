@@ -1,5 +1,5 @@
 ﻿.session {
-    background-color: $red;
+    background-color: $primary-colour;
     margin: 0 auto;
     width: 100%;
     height: auto;
@@ -14,7 +14,7 @@
     }
 
     &.st-gameover {
-        background-color: $light-blue;
+        background-color: $black;
     }
 
     &_result {
@@ -37,7 +37,7 @@
         &-description {
             margin-bottom: 10px;
             font-size: 14px;
-            color: $white;
+            color: $alt-colour;
             text-align: center;
         }
         &-moves {
@@ -46,7 +46,7 @@
                 margin: 5px;
 
                 &.st-winner {
-                    background-color: $red;
+                    background-color: $alt-colour;
                     stroke: $white;
                     fill: $white;
                     @include transform(scale(1.3));
@@ -64,16 +64,16 @@
             font-size: 13px;
             font-weight: bold;
             padding: 12px 40px;
-            color: $blue;
-            background-color: $yellow;
+            color: $white;
+            background-color: $primary-colour;
             margin-left: 5px;
             margin-right: 5px;
             @include transition(background-color 0.15s linear);
             cursor: pointer;
 
             &:hover {
-                background-color: $blue;
-                color: $yellow;
+                background-color: $white;
+                color: $black;
             }
         }
     }
