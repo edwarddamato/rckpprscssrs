@@ -25,6 +25,10 @@ grunt.cmd sass
 ## Usage
 Just download the source and open `index.html`. Alternatively, go to the [GitHub Page](http://edwarddamato.github.io/rckpprscssrs/index.html).
 
+Game modes available are:
+* Player vs. Computer -- here the COMPUTER uses your playing history for the session to try and guess your next move.
+* Computer vs. Computer
+* Player vs. Player
 
 ## Options
 
@@ -40,6 +44,15 @@ var MOVES = {
     SPOCK: "SPOCK"
 };
 ```
+## Browsers/Devices
+
+Tested on:
+* Google Chrome
+* Mozilla FireFox
+* Internet Explorer 9, 10, 11, EDGE
+* OS X Safari 9.1 (Desktop)
+* iOS 7, 8, 9 (iPhone/iPad)
+* Android 4.4, 5
 
 ## License
 
