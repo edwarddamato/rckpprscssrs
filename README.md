@@ -6,13 +6,21 @@ This game is built using HTML, CSS and vanilla JavaScript.
 
 
 ## Install
+When .SCSS or .JS files are modified, rebuild using Grunt.
+
+Go to `RockPaperScissors/node_modules/.bin`.
 
 ```
-$ npm install --save-dev grunt-sass
-```
+grunt.cmd uglify
 
+grunt.cmd sass
+```
 
 ## Usage
+Just download the source and open `index.html`. Alternatively, go to the [GitHub Page](http://edwarddamato.github.io/rckpprscssrs/index.html).
+
+
+## Options
 
 To modify the moves, open `moves.js` in `assets/js/libs` and modify the `MOVES` ENUM.
 
@@ -26,15 +34,6 @@ var MOVES = {
     SPOCK: "SPOCK"
 };
 ```
-Just download the source and open `index.html`. Alternatively, go to the [GitHub Page](http://edwarddamato.github.io/rckpprscssrs/index.html).
-
-
-## Options
-
-See the `node-sass` [options](https://github.com/sass/node-sass#options), except for `file`, `outFile`, `success`, `error`.
-
-The default value for the `precision` option is `10`, so you don't have to change it when using Bootstrap.
-
 
 ## License
 
