@@ -8016,18 +8016,11 @@ body {
   background-color: #fff;
   width: 100%;
   border-bottom: 1px solid #e4e4e4;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
   -webkit-animation: anim-nav 1s 1 ease-out forwards;
   -moz-animation: anim-nav 1s 1 ease-out forwards;
   -ms-animation: anim-nav 1s 1 ease-out forwards;
   -o-animation: anim-nav 1s 1 ease-out forwards;
-  animation: anim-nav 1s 1 ease-out forwards;
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  -ms-animation-delay: 1s;
-  -o-animation-delay: 1s;
-  animation-delay: 1s; }
+  animation: anim-nav 1s 1 ease-out forwards; }
   .nav_item {
     width: 150px;
     display: inline-block;

@@ -40,9 +40,7 @@ body {
     background-color: $white;
     width: 100%;
     border-bottom: 1px solid $border-colour;
-    @include opacity(0);
     @include animation(anim-nav 1s 1 ease-out forwards);
-    @include animation-delay(1s);
 
     &_item {
         width: 150px;
