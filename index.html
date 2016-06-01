@@ -40,8 +40,9 @@
         </header>
         <nav class="nav">
             <ul class="nav_item-list">
-                <li class="nav_item js_nav-game-start" data-players='{ "p1": 0, "p2": 1 }'>Player vs. Computer <span class="nav_item-stop js_nav-game-stop">Stop</span></li>
-                <li class="nav_item js_nav-game-start" data-players='{ "p1": 1, "p2": 1 }'>Computer vs. Computer <span class="nav_item-stop js_nav-game-stop">Stop</span></li>
+                <li class="nav_item js_nav-game-start" data-players='{ "p1": 0, "p2": 1 }'>Player vs. Computer <span class="nav_item-stop js_game-stop">Stop</span></li>
+                <li class="nav_item js_nav-game-start" data-players='{ "p1": 1, "p2": 1 }'>Computer vs. Computer <span class="nav_item-stop js_game-stop">Stop</span></li>
+                <li class="nav_item js_nav-game-start" data-players='{ "p1": 0, "p2": 0 }'>Player vs. Player <span class="nav_item-stop js_game-stop">Stop</span></li>
             </ul>
         </nav>
         <section class="session js_session">
@@ -51,50 +52,6 @@
             </ul>
             <div class="session_board">
                 <ul class="session_board-list js_session_board-list">
-                    <li class="session_board-item session_board-item--p1">
-                        <ul class="session_moves-list">
-                            <li class="session_moves-item">
-                                <svg class="icon icon_play icon_play--rock">
-                                    <use xlink:href="#icon-rock"></use>
-                                </svg>
-                                <span class="session_moves-title">Rock</span>
-                            </li>
-                            <li class="session_moves-item">
-                                <svg class="icon icon_play icon_play--paper">
-                                    <use xlink:href="#icon-paper"></use>
-                                </svg>
-                                <span class="session_moves-title">Paper</span>
-                            </li>
-                            <li class="session_moves-item">
-                                <svg class="icon icon_play icon_play--scissors">
-                                    <use xlink:href="#icon-scissors"></use>
-                                </svg>
-                                <span class="session_moves-title">Scissors</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="session_board-item session_board-item--p2 session_board-item--c">
-                        <ul class="session_moves-list">
-                            <li class="session_moves-item">
-                                <svg class="icon icon_play icon_play--rock">
-                                    <use xlink:href="#icon-rock"></use>
-                                </svg>
-                                <span class="session_moves-title">Rock</span>
-                            </li>
-                            <li class="session_moves-item">
-                                <svg class="icon icon_play icon_play--paper">
-                                    <use xlink:href="#icon-paper"></use>
-                                </svg>
-                                <span class="session_moves-title">Paper</span>
-                            </li>
-                            <li class="session_moves-item">
-                                <svg class="icon icon_play icon_play--scissors">
-                                    <use xlink:href="#icon-scissors"></use>
-                                </svg>
-                                <span class="session_moves-title">Scissors</span>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
             <div class="session_result">
@@ -103,7 +60,7 @@
                     <div class="session_result-description js_session_description"></div>
                     <div class="session_result-moves js_session-moves"></div>
                     <div class="session_options">
-                        <button class="session_options-button js_button-stop" value="Stop">Stop</button>
+                        <button class="session_options-button js_game-stop" value="Stop">Stop</button>
                         <button class="session_options-button js_button-again" value="Again!">Again!</button>
                     </div>
                 </div>

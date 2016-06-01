@@ -1,4 +1,9 @@
-﻿@include keyframes(anim-header) {
+﻿/*
+    Contains animations used throughout.
+*/
+
+// header animation
+@include keyframes(anim-header) {
     0% {
         @include transform(translateY(150px));
         @include opacity(0);
@@ -9,6 +14,7 @@
     }
 }
 
+// navigation animation
 @include keyframes(anim-nav) {
     from {
         @include opacity(0);
@@ -18,6 +24,7 @@
     }
 }
 
+// player turn animations
 @include keyframes(anim-loader-in) {
     0% {
         @include transform(scale(1));

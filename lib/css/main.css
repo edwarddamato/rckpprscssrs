@@ -1,3 +1,6 @@
+/*
+    main SASS file which is used to build the actual CSS.
+*/
 @-moz-keyframes flash {
   0% {
     opacity: 1; }
@@ -7689,11 +7692,15 @@ ul, li, ol {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
 
-/*$blue: #4281A4;
-$red: #FE938C;
-$light-blue: #9CAFB7;
-$yellow: #EAD2AC;
-$white: #fff;*/
+/*
+    Contains colours used throughout.
+*/
+/*
+    Contains mixins used by other SASS files.
+*/
+/*
+    Contains styles for icons (used for moves).
+*/
 .icon {
   stroke: #F62459;
   fill: #F62459; }
@@ -7704,6 +7711,9 @@ $white: #fff;*/
     border-radius: 0 50%;
     padding: 10px; }
 
+/*
+    Contains animations used throughout.
+*/
 @-webkit-keyframes anim-header {
   0% {
     -webkit-transform: translateY(150px);
@@ -7968,15 +7978,17 @@ $white: #fff;*/
     -o-transform: scale(0);
     transform: scale(0); } }
 
+/*
+    Contains styles for the game page
+*/
 body {
   background-color: #f4f4f4;
   color: #232323;
   font-family: sans-serif;
-  font-size: 12px;
-  padding-bottom: 32px; }
+  font-size: 12px; }
 
 .header {
-  padding: 20px;
+  padding: 10px;
   position: relative;
   -webkit-animation: anim-header 1s 1 ease-out;
   -moz-animation: anim-header 1s 1 ease-out;
@@ -8017,10 +8029,11 @@ body {
   -o-animation-delay: 1s;
   animation-delay: 1s; }
   .nav_item {
-    width: 50%;
-    float: left;
+    width: 150px;
+    display: inline-block;
     font-weight: bold;
-    text-align: center;
+    font-size: 12px;
+    text-align: left;
     color: #232323;
     padding: 10px 30px;
     position: relative;
@@ -8032,16 +8045,20 @@ body {
     cursor: pointer;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
     opacity: 0.5; }
-    @media (min-width: 768px) {
-      .nav_item {
-        padding: 10px 20px; } }
+    .nav_item-list {
+      overflow: auto;
+      max-width: 450px;
+      margin: 0 auto;
+      font-size: 0;
+      text-align: center; }
+      @media (min-width: 768px) {
+        .nav_item-list {
+          width: 70%; } }
     .nav_item.st-active, .nav_item:hover {
       filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
       opacity: 1; }
     .nav_item.st-active:after {
       display: none; }
-    .nav_item:nth-child(even) {
-      background-color: #fff; }
     .nav_item-stop {
       display: none;
       position: absolute;
@@ -8059,13 +8076,6 @@ body {
       transform: translateY(-50%); }
       .st-active .nav_item-stop {
         display: block; }
-    .nav_item-list {
-      overflow: auto;
-      max-width: 450px;
-      margin: 0 auto; }
-      @media (min-width: 768px) {
-        .nav_item-list {
-          width: 70%; } }
     .nav_item:after {
       content: '';
       width: 8px;
@@ -8089,8 +8099,12 @@ body {
   width: 100%;
   padding: 10px;
   font-size: 10px;
-  border-top: 1px solid #e4e4e4; }
+  border-top: 1px solid #e4e4e4;
+  background-color: #f4f4f4; }
 
+/*
+    Contains styles for the game session area.
+*/
 .session {
   background-color: #232323;
   margin: 0 auto;
@@ -8103,7 +8117,8 @@ body {
   -o-transition: all 0.15s ease-in;
   transition: all 0.15s ease-in;
   position: relative;
-  display: none; }
+  display: none;
+  margin-bottom: 32px; }
   .session.st-active {
     display: block; }
   .session.st-gameover {
@@ -8160,6 +8175,9 @@ body {
         background-color: #fff;
         color: #000; }
 
+/*
+    Contains styles for players area in session board.
+*/
 .session_players-list {
   overflow: auto;
   width: 100%;
@@ -8178,12 +8196,12 @@ body {
   text-transform: uppercase;
   font-size: 14px;
   font-weight: bold;
-  padding-right: 70px;
+  padding-right: 50px;
   position: relative; }
   .session_players-item:nth-child(2) {
     text-align: left;
     padding-right: 10px;
-    padding-left: 70px; }
+    padding-left: 50px; }
     .session_players-item:nth-child(2) .session_players-turn {
       text-align: left; }
       .session_players-item:nth-child(2) .session_players-turn:before, .session_players-item:nth-child(2) .session_players-turn:after {
@@ -8229,6 +8247,9 @@ body {
     -o-animation: anim-loader-out 1.5s infinite ease-out;
     animation: anim-loader-out 1.5s infinite ease-out; }
 
+/*
+    Contains styles for the session board (scores, moves).
+*/
 .session_scores-list {
   position: absolute;
   top: 0;
@@ -8277,13 +8298,55 @@ body {
       border-right: none; }
 
 .session_moves-list {
-  margin-right: 15px;
+  margin-right: 10px;
   float: right;
-  width: 135px; }
+  width: 132px;
+  position: relative; }
+  .session_moves-list.st-waiting:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #232323;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+    opacity: 0.2; }
+  .session_moves-list.st-done:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #232323;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+  .session_moves-list.st-done:after {
+    content: 'Move made!';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #fff;
+    background-color: #F62459;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 18px;
+    letter-spacing: -1px;
+    border-radius: 50% 0 50% 0;
+    padding: 32px 10px;
+    width: 100px; }
   .session_board-item:nth-child(even) .session_moves-list {
     float: left;
     margin-right: 0;
-    margin-left: 15px; }
+    margin-left: 10px; }
 
 .session_moves-item {
   overflow: auto;
@@ -8308,28 +8371,11 @@ body {
       border-radius: 0 0 50% 0; }
     .session_board-item--c .session_moves-item .icon_play {
       background-color: #000; }
-  .session_moves-item:hover .icon_play {
+  .session_moves-item:hover .icon_play, .session_moves-item.st-selected .icon_play {
     fill: #fff;
     stroke: #fff;
     background-color: #F62459; }
-  .session_moves-item:hover .session_moves-title {
-    color: #fff;
-    background-color: #F62459; }
-  .session_moves-item.st-selected:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #232323;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-    opacity: 0.5; }
-  .session_moves-item.st-selected .icon_play {
-    fill: #fff;
-    stroke: #fff;
-    background-color: #F62459; }
-  .session_moves-item.st-selected .session_moves-title {
+  .session_moves-item:hover .session_moves-title, .session_moves-item.st-selected .session_moves-title {
     color: #fff;
     background-color: #F62459; }
 

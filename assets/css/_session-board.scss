@@ -1,4 +1,7 @@
-﻿.session {
+﻿/*
+    Contains styles for the session board (scores, moves).
+*/
+.session {
     &_scores {
         &-list {
             position: absolute;
@@ -38,6 +41,7 @@
             width: 70%;
         }
 
+        // board is hidden if round is over - results are shown
         .st-gameover & {
             display: none;
         }
@@ -58,17 +62,63 @@
         }
     }
 
-    
     &_moves {
         &-list {
-            margin-right: 15px;
+            margin-right: 10px;
             float: right;
-            width: 135px;
+            width: 132px;
+            position: relative;
             
+            // if moves list has waiting state, add layer to disallow interactions
+            &.st-waiting {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $primary-colour;
+                    @include opacity(0.2);
+                }
+            }
+            // if moves list has done state, add layer to hide the moves (we don't want to the player to see the move)
+            &.st-done {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $primary-colour;
+                    @include opacity(1);
+                }
+                &:after {
+                    content: 'Move made!';
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    @include transform(translateY(-50%));
+                    color: $white;
+                    background-color: $alt-colour;
+                    font-weight: bold;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    text-align: center;
+                    line-height: 18px;
+                    letter-spacing: -1px;
+                    border-radius: 50% 0 50% 0;
+                    padding: 32px 10px;
+                    width: 100px;
+                }
+            }
+            
+            // set opposite direction for moves for the second player
             .session_board-item:nth-child(even) & {
                 float: left;
                 margin-right: 0;
-                margin-left: 15px;
+                margin-left: 10px;
             }
         }
         &-item {
@@ -79,10 +129,12 @@
             display: block;
             float: right;
             
+            // set opposite direction for moves for the second player
             .session_board-item:nth-child(even) & {
                 float: left;
             }
-
+            
+            // if board is of a COMPUTER, do not show pointer
             .session_board-item--c & {
                 cursor: default;
             }
@@ -91,42 +143,21 @@
                 float: left;
                 border-radius: 0 0 0 50%;
                 @include transition(all 0.15s linear);
-
+                
+                // set opposite direction for moves for the second player
                 .session_board-item:nth-child(even) & {
                     float: right;
                     border-radius: 0 0 50% 0;
                 }
-
+                
+                // set different colour for COMPUTER moves
                 .session_board-item--c & {
                     background-color: $black;
                 }
             }
 
-            &:hover {
-                .icon_play {
-                    fill: $white;
-                    stroke: $white;
-                    background-color: $alt-colour;
-                }
-
-                .session_moves-title {
-                    color: $white;
-                    background-color: $alt-colour;
-                }
-            }
-
-            
+            &:hover,
             &.st-selected {
-                &:before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: $primary-colour;
-                    @include opacity(0.5);
-                }
                 .icon_play {
                     fill: $white;
                     stroke: $white;
@@ -150,16 +181,18 @@
             padding: 17px 14px 13px 10px;
             margin-left: 1px;
             @include transition(background-color 0.15s linear);
-
+            
+            // set opposite direction for moves for the second player
             .session_board-item:nth-child(even) & {
                 margin-left: 0;
                 margin-right: 1px;
                 border-radius: 50% 0 0 0;
                 padding: 17px 10px 13px 14px;
             }
-
+            
+            // set different colour for COMPUTER moves
             .session_board-item--c & {
-                background-color: #000;
+                background-color: $black;
             }
         }
     }

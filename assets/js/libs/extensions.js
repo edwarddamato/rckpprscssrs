@@ -108,3 +108,11 @@ Element.prototype.empty = function () {
         $element.removeChild($element.firstChild);
     }
 }
+
+/**
+    Returns the value of a random position within an array.
+*/
+Array.prototype.getRandomValue = function () {
+    // based from: http://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
+    return this[(Math.floor(Math.random() * (this.length - 1 + 1) + 1)) - 1];
+}

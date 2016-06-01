@@ -1,4 +1,7 @@
-﻿@import "node_modules/compass-mixins/lib/_compass.scss";
+﻿/*
+    main SASS file which is used to build the actual CSS.
+*/
+@import "node_modules/compass-mixins/lib/_compass.scss";
 @import "node_modules/compass-mixins/lib/_animate.scss";
 
 @import "normalize";

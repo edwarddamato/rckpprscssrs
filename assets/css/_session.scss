@@ -1,4 +1,7 @@
-﻿.session {
+﻿/*
+    Contains styles for the game session area.
+*/
+.session {
     background-color: $primary-colour;
     margin: 0 auto;
     width: 100%;
@@ -8,19 +11,24 @@
     @include transition(all 0.15s ease-in);
     position: relative;
     display: none;
+    margin-bottom: 32px;
 
+    // if session is active, show it
     &.st-active {
         display: block;
     }
 
+    // game over state
     &.st-gameover {
         background-color: $black;
     }
 
+    // game result area
     &_result {
         display: none;
         padding: 20px;
 
+        // if session is game over, show it
         .st-gameover & {
             display: block;
         }

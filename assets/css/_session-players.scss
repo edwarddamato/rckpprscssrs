@@ -1,4 +1,7 @@
-﻿.session {
+﻿/*
+    Contains styles for players area in session board.
+*/
+.session {
     &_players {
         &-list {
             overflow: auto;
@@ -19,13 +22,14 @@
             text-transform: uppercase;
             font-size: 14px;
             font-weight: bold;
-            padding-right: 70px;
+            padding-right: 50px;
             position: relative;
-
+            
+            // set opposite direction for the second player
             &:nth-child(2) {
                 text-align: left;
                 padding-right: 10px;
-                padding-left: 70px;
+                padding-left: 50px;
 
                 .session_players-turn {
                     text-align: left;
@@ -48,14 +52,17 @@
             display: block;
             visibility: hidden;
 
+            // show only if player has turn
             .st-hasturn & {
                 visibility: visible;
             }
 
+            // has turn state remains active when the game is over, hence add specific rule for game over state
             .st-gameover & {
                 display: none;
             }
 
+            // loading circles to indicate player turn and 'thinking'
             &:after,
             &:before {
                 content: '';
@@ -68,7 +75,10 @@
                 margin-top: -16px;
                 border-radius: 50%;
                 @include opacity(0.5);
+
                 
+                
+                // don't show if game is over
                 .st-gameover & {
                     display: none;
                 }
