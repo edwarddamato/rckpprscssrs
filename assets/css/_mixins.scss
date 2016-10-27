@@ -1,4 +1,9 @@
-﻿@mixin keyframes($name) {
+﻿/*
+    Contains mixins used by other SASS files.
+*/
+
+// keyframes mixin
+@mixin keyframes($name) {
     @-webkit-keyframes #{$name} {
         @content;
     }

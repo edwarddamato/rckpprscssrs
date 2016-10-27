@@ -7,6 +7,9 @@
     "grunt-contrib-watch": "1.0.0",
     "grunt-contrib-uglify": "1.0.1",
     "compass-mixins": "0.12.10",
-    "rimraf": "2.5.2"
+    "rimraf": "2.5.2",
+    "mocha": "2.5.3",
+    "grunt-mocha-test": "0.12.7",
+    "chai": "3.5.0"
   }
 }

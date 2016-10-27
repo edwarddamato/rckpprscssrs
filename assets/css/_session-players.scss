@@ -1,0 +1,95 @@
+﻿/*
+    Contains styles for players area in session board.
+*/
+.session {
+    &_players {
+        &-list {
+            overflow: auto;
+            width: 100%;
+            margin: 0 auto;
+            @media (min-width: 768px) {
+                width: 60%;
+            }
+        }
+
+        &-item {
+            float: left;
+            text-align: right;
+            width: 50%;
+            padding: 10px;
+            color: $white;
+            border-bottom: 1px solid $border-colour-dark;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: bold;
+            padding-right: 50px;
+            position: relative;
+            
+            // set opposite direction for the second player
+            &:nth-child(2) {
+                text-align: left;
+                padding-right: 10px;
+                padding-left: 50px;
+
+                .session_players-turn {
+                    text-align: left;
+
+                    &:before,
+                    &:after {
+                        right: 10px;
+                        left: auto;
+                    }
+                }
+            }
+        }
+        
+        &-turn {
+            color: $alt-colour;
+            text-align: right;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: normal;
+            display: block;
+            visibility: hidden;
+
+            // show only if player has turn
+            .st-hasturn & {
+                visibility: visible;
+            }
+
+            // has turn state remains active when the game is over, hence add specific rule for game over state
+            .st-gameover & {
+                display: none;
+            }
+
+            // loading circles to indicate player turn and 'thinking'
+            &:after,
+            &:before {
+                content: '';
+                background-color: $white;
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                width: 32px;
+                height: 32px;
+                margin-top: -16px;
+                border-radius: 50%;
+                @include opacity(0.5);
+
+                
+                
+                // don't show if game is over
+                .st-gameover & {
+                    display: none;
+                }
+            }
+
+            &:before {
+                @include animation(anim-loader-in 1.5s infinite ease-out);
+            }
+            &:after {
+                @include animation(anim-loader-out 1.5s infinite ease-out);
+            }
+        }
+    }
+}
