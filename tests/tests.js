@@ -100,5 +100,24 @@ describe('Extensions', function () {
 });
 
 describe('Game', function () {
-    // tests for game
+    describe('Check Player Count', function () {
+        it('Has Two Players', function () {
+            Game.start(0, 0);
+
+            expect(Game.current.players.length).to.equal(2);
+        });
+    });
+
+    describe('Check Player Scores', function () {
+        it('P1 wins', function () {
+
+            Game.start(0, 0);
+
+            Game.play(Game.current.players[0], Moves.MOVES.SCISSORS);
+            Game.play(Game.current.players[1], Moves.MOVES.PAPER);
+
+            expect(Game.current.players[0].score.wins).to.equal(1);
+            expect(Game.current.players[1].score.losses).to.equal(1);
+        });
+    });
 });

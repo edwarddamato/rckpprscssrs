@@ -1,0 +1,110 @@
+﻿/*
+    Contains styles for the leaderboard panel area.
+*/
+
+@mixin leaderboard-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    // TODO: set as mixin
+    @media (min-width: 768px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.leaderboard {
+    background-color: $panel-bg;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: $header-height + 4px;
+    left: 0;
+    padding: 20px 0 20px 0;
+    display: none;
+    z-index: 1;
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: -12px;
+        right: 32px;
+        width: 0px;
+        height: 0px;
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-bottom: 12px solid $panel-bg;
+    }
+
+    
+    &_toggle {
+        display: none;
+
+        &:checked ~ .leaderboard {
+            display: block;
+        }
+
+        &-label {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &_player {
+        display: inline-block;
+        vertical-align: middle;
+        @include leaderboard-padding;
+
+        &-list {
+            font-size: 0; // cater for inline-block spacing
+        }
+
+        &-item {
+            display: inline-block;
+            width: 50%;
+            overflow: auto;
+            color: $white;
+            font-size: 14px;
+            letter-spacing: -1px;
+            text-align: center;
+            @include leaderboard-padding;
+
+            @media (min-width: 768px) {
+                font-size: 18px;
+            }
+            
+            &:first-child {
+                border-right: 1px solid $border-colour;
+            }
+            &:last-child {
+                border-left: 1px solid $border-colour;
+            }
+        }
+
+        &-stat {
+            overflow: auto;
+            &s {
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+                @include leaderboard-padding;
+            }
+        }
+
+        &-label {
+            float: left;
+            width: 100px;
+            
+            @media (min-width: 768px) {
+                width: 150px;
+            }
+        }
+        &-value {
+            float: left;
+        }
+    }
+}

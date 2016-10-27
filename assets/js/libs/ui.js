@@ -17,12 +17,8 @@ var UI = (function () {
             Sets the available moves in the header; subscribes to the game engine and binds click events
         */
         setUI: function () {
-            // creates the available moves in the header
+            // get the available moves
             movesList = Moves.getMovesList();
-            var $headerMovesList = document.querySelector(".js_header-moves");
-            for (var countMoves = 0; countMoves < movesList.length; countMoves++) {
-                $headerMovesList.appendChild(_ui.getMoveIcon(movesList[countMoves]));
-            }
 
             // bind events
             _private.bindEvents();
@@ -172,6 +168,12 @@ var UI = (function () {
             var $playersList = document.querySelector(".js_game-players");
             $playersList.empty();
 
+            // get leaderboard players
+            var $leaderboardPlayers = document.querySelectorAll(".js_leaderboard-player");
+
+            // get leaderboard player stats
+            var $leaderboardPlayerStats = document.querySelectorAll(".js_leaderboard-player-stats");
+
             // get scores list
             var $scoresList = document.querySelector(".js_game-scores");
             $scoresList.empty();
@@ -184,6 +186,10 @@ var UI = (function () {
             for (var countPlayers = 0; countPlayers < players.length; countPlayers++) {
                 var player = players[countPlayers];
 
+                // set players in leaderboard
+                $leaderboardPlayers[countPlayers].innerText = player.name;
+                _ui.setPlayerLeaderboard($leaderboardPlayerStats[countPlayers], player);
+                
                 // generate player container
                 var $player = document.createElement("li");
                 $player.addClass("session_players-item");
@@ -204,7 +210,7 @@ var UI = (function () {
                 // generate player score item
                 var $score = document.createElement("li");
                 $score.addClass("session_scores-item");
-                $score.innerText = player.score;
+                $score.innerText = player.score.wins;
                 $scoresList.appendChild($score);
 
                 // call the above method to generate the player board
@@ -252,6 +258,21 @@ var UI = (function () {
                 }
             }
         },
+        setPlayerLeaderboard: function ($playerStats, player) {
+            $playerStats.empty();
+            $playerStats.appendChild(_ui.generateStat("Victories", player.score.wins));
+            $playerStats.appendChild(_ui.generateStat("Defeats", player.score.losses));
+            $playerStats.appendChild(_ui.generateStat("Draws", player.score.draws));
+        },
+        generateStat: function (label, value) {
+            var $stat = document.createElement("li");
+            $stat.addClass("leaderboard_player-stat");
+            $stat.innerHTML =
+                            "<div class=\"leaderboard_player-label\">" + label + "</div>" +
+                            "<div class=\"leaderboard_player-value\">" + value + "</div>";
+
+            return $stat;
+        },
         /**
             Refreshes the game area by calling the appropriate UI methods based on the game state. 
             This method is subscribed to the game engine and gets called everytime a game event happens.
@@ -260,12 +281,17 @@ var UI = (function () {
             // get session area
             var $session = document.querySelector(".js_session");
 
+            // get header actions list
+            var $headerActionsList = document.querySelector(".js-session-action-list");
+
             // get current game
             var currentGame = Game.current;
 
             // if there are players in the game, set session as active
             if (currentGame.players.length > 0) {
                 $session.addClass("st-active");
+                $headerActionsList.addClass("st-active");
+
                 // if round is over, add state class
                 if (currentGame.gameOver) {
                     $session.addClass("st-gameover");
@@ -278,6 +304,7 @@ var UI = (function () {
             }
             else { // game is not active, remove state class
                 $session.removeClass("st-active");
+                $headerActionsList.removeClass("st-active");
             };
         }
     };

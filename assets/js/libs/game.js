@@ -47,13 +47,21 @@ var Game = (function () {
             currentGame.turn = 0; // turn for first player
             currentGame.players = [{ // array of 2 players
                 type: p1,
-                score: 0,
+                score: {
+                    wins: 0,
+                    losses: 0,
+                    draws: 0
+                },
                 move: -1,
                 name: ""
             },
             {
                 type: p2,
-                score: 0,
+                score: {
+                    wins: 0,
+                    losses: 0,
+                    draws: 0
+                },
                 move: -1,
                 name: ""
             }];
@@ -188,6 +196,8 @@ var Game = (function () {
                 // if move is the same, draw
                 if (player1.move === player2.move) {
                     currentGame.winner = -1; // everyone wins (or loses)
+                    player1.score.draws++;
+                    player2.score.draws++;
                 }
                 else {
                     // get the winner between the two moves
@@ -195,13 +205,11 @@ var Game = (function () {
 
                     // player 1 wins, update score and set as winner
                     if (player1.move === winnerMove) {
-                        player1.score++;
-                        currentGame.winner = player1;
+                        _private.setRoundResults(player1, player2);
                     }
                     // player 2 wins, update score and set as winner
                     else {
-                        player2.score++;
-                        currentGame.winner = player2;
+                        _private.setRoundResults(player2, player1);
                     }
                 }
 
@@ -209,6 +217,11 @@ var Game = (function () {
                 currentGame.gameOver = true;
                 _private.updateSubscribers();
             }
+        },
+        setRoundResults: function (winner, loser) {
+            winner.score.wins++;
+            loser.score.losses++;
+            currentGame.winner = winner;
         }
     };
 

@@ -29,14 +29,19 @@
                     <path d="M14.571 2.286q-0.857 0-1.42 0.607t-0.563 1.464q0 0.25 0.054 0.5l2.679 11.143h-0.464l-2.071-8.607q-0.161-0.679-0.705-1.107t-1.241-0.429q-0.839 0-1.411 0.607t-0.571 1.446q0 0.196 0.071 0.518 0.054 0.232 0.696 2.875t1.214 5.036 0.571 2.464v4.054l-5.482-4.107q-0.607-0.464-1.375-0.464-0.929 0-1.598 0.652t-0.67 1.58q0 1.196 1 1.964l9.054 6.768q0.607 0.464 1.357 0.464h12.393q0.589 0 1.054-0.366t0.607-0.938l1.786-7.161q0.143-0.536 0.179-1.571t0.161-1.536l2.071-8.536q0.054-0.214 0.054-0.464 0-0.821-0.589-1.411t-1.429-0.589q-0.679 0-1.232 0.455t-0.714 1.116l-1.768 7.286h-0.464l2.357-9.768q0.054-0.25 0.054-0.5 0-0.839-0.571-1.429t-1.429-0.589q-0.679 0-1.223 0.429t-0.705 1.107l-2.589 10.75h-2.268l-2.929-12.179q-0.161-0.679-0.705-1.107t-1.223-0.429zM26.089 32h-12.393q-1.518 0-2.732-0.911l-9.054-6.786q-0.893-0.679-1.402-1.679t-0.509-2.107q0-1.875 1.339-3.196t3.214-1.321q0.446 0 0.884 0.098t0.741 0.196 0.732 0.366 0.625 0.411 0.688 0.527 0.67 0.509l-2.196-9.143q-0.125-0.625-0.125-1.054 0-1.661 1.071-2.893t2.714-1.411q0.25-1.554 1.438-2.58t2.777-1.027q1.482 0 2.643 0.92t1.518 2.366l1.839 7.643 1.482-6.214q0.357-1.446 1.518-2.366t2.643-0.92q1.554 0 2.723 0.964t1.473 2.482q1.661 0.179 2.768 1.393t1.107 2.875q0 0.536-0.125 1.018l-2.071 8.518q-0.089 0.393-0.089 1.196 0 0.911-0.232 1.929l-1.804 7.161q-0.339 1.339-1.42 2.188t-2.455 0.848z"></path>
                 </symbol>
             </defs>
-        </svg>
+     
+           </svg>
 
     </head>
     <body>
         <header class="header">
-            <h1 class="header_title">Rock-Paper-Scissors</h1>
-            <div class="header_icons js_header-moves">
-            </div>
+            <h1 class="header_title">Rock, Paper, Scissors</h1>
+            <ul class="header_session-action-list js-session-action-list">
+                <li class="header_session-action-item header_session-action-item--leaderboard">
+                    <label class="header_session-action-label js_leaderboard-label-toggle" for="chkLeaderboardToggle"></label>
+                    Leaderboard
+                </li>
+            </ul>
         </header>
         <nav class="nav">
             <ul class="nav_item-list">
@@ -45,6 +50,26 @@
                 <li class="nav_item js_nav-game-start" data-players='{ "p1": 0, "p2": 0 }'>Player vs. Player <span class="nav_item-stop js_game-stop">Stop</span></li>
             </ul>
         </nav>
+
+        <input type="checkbox" id="chkLeaderboardToggle" class="leaderboard_toggle js_leaderboard-toggle" />
+        <section class="leaderboard js_leaderboard">
+            <label class="leaderboard_toggle-label" for="chkLeaderboardToggle"></label>
+            <ul class="leaderboard_player-list">
+                <li class="leaderboard_player-item">
+                    <div class="leaderboard_player js_leaderboard-player"></div>
+                    <ul class="leaderboard_player-stats js_leaderboard-player-stats">
+
+                    </ul>
+                </li>
+
+                <li class="leaderboard_player-item">
+                    <div class="leaderboard_player js_leaderboard-player"></div>
+                    <ul class="leaderboard_player-stats js_leaderboard-player-stats">
+
+                    </ul>
+                </li>
+            </ul>
+        </section>
         <section class="session js_session">
             <ul class="session_scores-list js_game-scores">
             </ul>
