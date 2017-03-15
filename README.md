@@ -12,7 +12,7 @@ If downloaded locally, install packages using `npm`.
 $ npm install
 ```
 
-When .SCSS or .JS files are modified, rebuild using Grunt.
+Build using Grunt.
 
 Go to `RockPaperScissors/node_modules/.bin`.
 
@@ -23,7 +23,7 @@ grunt.cmd sass
 ```
 
 ## Usage
-Just download the source and open `index.html`. Alternatively, go to the [GitHub Page](http://edwarddamato.github.io/rckpprscssrs/index.html).
+After downloading and rebuiding the source (see Grunt steps above), open `index.html`. Alternatively, go to the [GitHub Page](http://edwarddamato.github.io/rckpprscssrs/index.html).
 
 Game modes available are:
 * Player vs. Computer -- here the COMPUTER uses your playing history for the session to try and guess your next move.
@@ -56,4 +56,4 @@ Tested on and compatible with:
 
 ## License
 
-© [Edward D'Amato](http://www.edwarddamato.com)
+Â© [Edward D'Amato](http://www.edwarddamato.com)
